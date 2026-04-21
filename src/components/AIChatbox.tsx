@@ -58,7 +58,7 @@ export function AIChatbox() {
     try {
       const ai = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
       const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
+        model: 'gemini-1.5-flash',
         contents: [...messages, userMessage].map(m => ({
           role: m.role === 'assistant' ? 'assistant' : 'user',
           parts: [{ text: m.content }]
@@ -80,7 +80,7 @@ export function AIChatbox() {
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Gemini Error:', error);
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Đã có lỗi xảy ra khi kết nối với AI.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi kết nối AI. Có thể API key đã hết hạn hoặc bị giới hạn. Vui lòng tạo API key mới tại https://aistudio.google.com/app/apikey' }]);
     } finally {
       setIsLoading(false);
     }
