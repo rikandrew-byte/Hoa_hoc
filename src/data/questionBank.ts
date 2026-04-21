@@ -140,6 +140,12 @@ export const CHAPTER_3_QUESTIONS: Record<string, Question[]> = {
     { id: 'q3.2.6', text: '0.1 mol khí CO2 ở đktc có thể tích là?', options: ['2.24 lít', '22.4 lít', '0.224 lít', '224 lít'], correctOption: 0, explanation: '0.1 * 22.4 = 2.24.' },
     { id: 'q3.2.7', text: 'Khối lượng của 2 mol Al là?', options: ['27g', '54g', '13.5g', '2g'], correctOption: 1, explanation: '2 * 27 = 54g.' },
     { id: 'q3.2.8', text: 'Số mol của 5.6g Fe là?', options: ['1 mol', '0.5 mol', '0.1 mol', '0.2 mol'], correctOption: 2, explanation: '5.6 / 56 = 0.1.' }
+  ],
+  'l3.3': [
+    { id: 'q3.3.1', text: 'Khí Oxi (M=32) nặng hay nhẹ hơn không khí (29) bao nhiêu lần?', options: ['1.1 lần', '0.9 lần', '1.5 lần', '2.2 lần'], correctOption: 0, explanation: '32 / 29 ≈ 1.1.' },
+    { id: 'q3.3.2', text: 'Công thức tính tỉ khối của khí A đối với khí B là?', options: ['d = MA / MB', 'd = MB / MA', 'd = MA * MB', 'd = MA + MB'], correctOption: 0, explanation: 'Tỉ số khối lượng mol.' },
+    { id: 'q3.3.3', text: 'Khí nào sau đây nhẹ hơn không khí?', options: ['CO2', 'Cl2', 'CH4', 'SO2'], correctOption: 2, explanation: 'M(CH4) = 16 < 29.' },
+    { id: 'q3.3.4', text: 'Để biết khí A nặng hay nhẹ hơn không khí bao nhiêu lần, ta so sánh MA với?', options: ['22.4', '29', '18', '32'], correctOption: 1, explanation: 'Khối lượng mol trung bình của không khí là 29.' }
   ]
 };
 
@@ -149,12 +155,12 @@ export const CHAPTER_4_QUESTIONS: Record<string, Question[]> = {
     { id: 'q4.1.2', text: 'Ứng dụng chính của Oxi là?', options: ['Duy trì sự cháy and sự sống', 'Làm nhiên liệu tên lửa', 'Bơm vào bóng bay', 'Cả A and B'], correctOption: 3, explanation: 'Đặc tính quan trọng của Oxi.' },
     { id: 'q4.1.3', text: 'Phần trăm thể tích Oxi trong không khí là?', options: ['78%', '21%', '1%', '50%'], correctOption: 1, explanation: 'Oxi chiếm khoảng 1/5 thể tích không khí.' },
     { id: 'q4.1.4', text: 'Đốt P trong Oxi tạo thành khói trắng là?', options: ['P2O3', 'P2O5', 'PO2', 'P5O2'], correctOption: 1, explanation: 'Điphotpho pentaoxit.' },
-    { id: 'q4.1.5', text: 'Oxi tác dụng with Fe ở nhiệt độ cao tạo ra?', options: ['FeO', 'Fe2O3', 'Fe3O4', 'FeOH'], correctOption: 2, explanation: 'Sắt từ oxit.' },
-    { id: 'q4.1.6', text: 'Kí hiệu hóa học của nguyên tố Oxi là?', options: ['O2', 'O', 'O3', '2O'], correctOption: 1, explanation: 'Kí hiệu hóa học gồm 1 chữ cái O.' },
-    { id: 'q4.1.7', text: 'Oxi hóa lỏng ở nhiệt độ bao nhiêu (độ C)?', options: ['0', '100', '-183', '-273'], correctOption: 2, explanation: 'Nhiệt độ hóa lỏng rất thấp.' },
-    { id: 'q4.1.8', text: 'Oxi là chất khí?', options: ['Màu xanh', 'Không màu, không mùi', 'Mùi hắc', 'Màu vàng'], correctOption: 1, explanation: 'Tính chất vật lý của Oxi.' },
-    { id: 'q4.1.9', text: 'Phản ứng nào sau đây sinh ra Oxi?', options: ['Nhiệt phân KMnO4', 'Cho Zn + HCl', 'Nhiệt phân CaCO3', 'Đốt S'], correctOption: 0, explanation: 'Phương pháp điều chế trong PTN.' },
-    { id: 'q4.1.10', text: 'Oxi nặng hơn hay nhẹ hơn không khí?', options: ['Nhẹ hơn', 'Bằng nhau', 'Nặng hơn', 'Rất nhẹ'], correctOption: 2, explanation: 'M(O2) = 32 > 29.' }
+    { id: 'q4.1.5', text: 'Oxi tác dụng with Fe ở nhiệt độ cao tạo ra?', options: ['FeO', 'Fe2O3', 'Fe3O4', 'FeOH'], correctOption: 2, explanation: 'Sắt từ oxit.' }
+  ],
+  'l4.2': [
+    { id: 'q4.2.1', text: 'Sự tác dụng của Oxi với một chất được gọi là?', options: ['Sự khử', 'Sự oxi hóa', 'Sự phân hủy', 'Sự trao đổi'], correctOption: 1, explanation: 'Định nghĩa sự oxi hóa.' },
+    { id: 'q4.2.2', text: 'Phản ứng hóa hợp là gì?', options: ['Từ 1 chất tạo ra nhiều chất', 'Nhiều chất tạo ra 1 chất mới duy nhất', 'Trao đổi nguyên tử', 'Phản ứng tỏa nhiệt'], correctOption: 1, explanation: 'A + B -> C.' },
+    { id: 'q4.2.3', text: 'Ví dụ nào sau đây là phản ứng hóa hợp?', options: ['CaCO3 -> CaO + CO2', 'CaO + H2O -> Ca(OH)2', '2KClO3 -> 2KCl + 3O2', 'Zn + 2HCl -> ZnCl2 + H2'], correctOption: 1, explanation: 'Hai chất ban đầu tạo ra 1 sản phẩm.' }
   ]
 };
 
@@ -180,10 +186,6 @@ export const CHAPTER_6_QUESTIONS: Record<string, Question[]> = {
     { id: 'q6.1.3', text: 'Chất tan có thể ở trạng thái?', options: ['Rắn', 'Lỏng', 'Khí', 'Cả 3'], correctOption: 3, explanation: 'Chất tan đa dạng.' },
     { id: 'q6.1.4', text: 'Dung môi phổ biến nhất là?', options: ['Rượu', 'Xăng', 'Nước', 'Dầu'], correctOption: 2, explanation: 'Nước hòa tan được nhiều chất.' },
     { id: 'q6.1.5', text: 'Độ tan của chất rắn thường tăng khi?', options: ['Giảm nhiệt độ', 'Tăng nhiệt độ', 'Tăng áp suất', 'Giữ nguyên nhiệt độ'], correctOption: 1, explanation: 'Nhiệt độ giúp hòa tan nhanh and nhiều hơn.' },
-    { id: 'q6.1.6', text: 'Dung dịch bão hòa là dung dịch?', options: ['Không thể hòa tan thêm chất tan', 'Có thể hòa tan thêm chất tan', 'Rất loãng', 'Chất tan không tan nữa'], correctOption: 0, explanation: 'Đạt giới hạn hòa tan ở nhiệt độ xác định.' },
-    { id: 'q6.1.7', text: 'Muốn hòa tan chất rắn nhanh hơn, ta có thể?', options: ['Khuấy đều', 'Nghiền nhỏ', 'Đun nóng', 'Cả 3 cách'], correctOption: 3, explanation: 'Các biện pháp tăng tốc độ hòa tan.' },
-    { id: 'q6.1.8', text: 'Nồng độ phần trăm (C%) tính theo công thức?', options: ['mct/mdd * 100', 'n/V', 'mct/V', 'mdd/mct * 100'], correctOption: 0, explanation: 'Công thức tính theo khối lượng.' },
-    { id: 'q6.1.9', text: 'Hòa tan 5g muối vào 45g nước, mdd là?', options: ['50g', '40g', '45g', '5g'], correctOption: 0, explanation: 'mdd = mct + mdm.' },
-    { id: 'q6.1.10', text: 'C% của dung dịch trên là?', options: ['5%', '10%', '11.1%', '9%'], correctOption: 1, explanation: '5/50 * 100 = 10%.' }
+    { id: 'q6.1.6', text: 'Dung dịch bão hòa là dung dịch?', options: ['Không thể hòa tan thêm chất tan', 'Có thể hòa tan thêm chất tan', 'Rất loãng', 'Chất tan không tan nữa'], correctOption: 0, explanation: 'Đạt giới hạn hòa tan ở nhiệt độ xác định.' }
   ]
 };

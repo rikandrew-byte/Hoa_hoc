@@ -82,7 +82,7 @@ export const CURRICULUM: Chapter[] = [
         id: 'l3.3', 
         title: 'Tỉ khối của chất khí', 
         content: 'So sánh độ nặng nhẹ giữa các chất khí: d(A/B) = M(A)/M(B). So với không khí: d(A/kk) = M(A)/29.',
-        exercises: CHAPTER_3_QUESTIONS['l3.1'] // Fallback or add more
+        exercises: CHAPTER_3_QUESTIONS['l3.3'] // Updated correctly
       },
     ]
   },

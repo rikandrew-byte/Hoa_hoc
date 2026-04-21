@@ -81,7 +81,7 @@ export function AIChatbox() {
   };
 
   return (
-    <div className="flex flex-col h-[600px] glass-panel rounded-3xl border-[var(--panel-border)] overflow-hidden shadow-2xl relative">
+    <div className="flex flex-col h-[500px] md:h-[600px] max-h-[80vh] md:max-h-none glass-panel rounded-3xl border-[var(--panel-border)] overflow-hidden shadow-2xl relative">
       {/* Confirmation Overlay */}
       {showConfirm && (
         <div className="absolute inset-x-0 bottom-24 z-20 px-6 animate-in fade-in slide-in-from-bottom-4 duration-200">
