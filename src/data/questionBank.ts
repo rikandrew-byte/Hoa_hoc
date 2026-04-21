@@ -117,6 +117,13 @@ export const CHAPTER_2_QUESTIONS: Record<string, Question[]> = {
     { id: 'q2.3.8', text: 'Cân bằng PTHH: Mg + HCl -> MgCl2 + H2?', options: ['Mg + HCl -> MgCl2 + H2', 'Mg + 2HCl -> MgCl2 + H2', '2Mg + HCl -> 2MgCl2 + H2', 'Mg + 2HCl -> MgCl + H'], correctOption: 1, explanation: 'Cần 2 HCl để cấp 2 Cl cho MgCl2.' },
     { id: 'q2.3.9', text: 'Chất X trong sơ đồ: BaCl2 + Na2SO4 -> ... + 2NaCl là?', options: ['BaSO4', 'BaNa', 'BaCl', 'Na2Ba'], correctOption: 0, explanation: 'Phản ứng trao đổi tạo kết tủa trắng BaSO4.' },
     { id: 'q2.3.10', text: 'Hệ số của Oxi trong PT: 2C2H2 + ...O2 -> 4CO2 + 2H2O là?', options: ['3', '5', '2', '1'], correctOption: 1, explanation: 'Tổng O vế phải là 4*2 + 2 = 10, vậy cần 5 O2.' }
+  ],
+  'l2.4': [
+    { id: 'q2.4.1', text: 'Yếu tố nào sau đây thường làm tăng tốc độ phản ứng?', options: ['Giảm nhiệt độ', 'Tăng nồng độ chất tham gia', 'Giảm diện tích tiếp xúc', 'Loại bỏ chất xúc tác'], correctOption: 1, explanation: 'Nồng độ cao giúp các hạt va chạm nhiều hơn.' },
+    { id: 'q2.4.2', text: 'Tại sao người ta thường đập nhỏ than trước khi đốt?', options: ['Để than đẹp hơn', 'Để giảm khối lượng', 'Để tăng diện tích tiếp xúc với Oxi', 'Để dễ vận chuyển'], correctOption: 2, explanation: 'Diện tích lớn giúp phản ứng cháy xảy ra nhanh và mạnh hơn.' },
+    { id: 'q2.4.3', text: 'Chất làm tăng tốc độ phản ứng nhưng không bị biến đổi sau phản ứng gọi là?', options: ['Chất tham gia', 'Sản phẩm', 'Chất xúc tác', 'Dung môi'], correctOption: 2, explanation: 'Định nghĩa chất xúc tác.' },
+    { id: 'q2.4.4', text: 'Thực phẩm để trong tủ lạnh lâu hỏng hơn vì?', options: ['Vi khuẩn không thích lạnh', 'Nhiệt độ thấp làm giảm tốc độ phản ứng phân hủy', 'Tủ lạnh rất kín', 'Thực phẩm bị đông cứng'], correctOption: 1, explanation: 'Nhiệt độ là yếu tố ảnh hưởng trực tiếp đến tốc độ phản ứng hóa sinh.' },
+    { id: 'q2.4.5', text: 'Dùng men rượu để ủ cơm nếp tạo thành rượu là ứng dụng của?', options: ['Tăng áp suất', 'Tăng nồng độ', 'Chất xúc tác (Enzyme)', 'Giảm nhiệt độ'], correctOption: 2, explanation: 'Men đóng vai trò xúc tác sinh học.' }
   ]
 };
 
@@ -187,5 +194,35 @@ export const CHAPTER_6_QUESTIONS: Record<string, Question[]> = {
     { id: 'q6.1.4', text: 'Dung môi phổ biến nhất là?', options: ['Rượu', 'Xăng', 'Nước', 'Dầu'], correctOption: 2, explanation: 'Nước hòa tan được nhiều chất.' },
     { id: 'q6.1.5', text: 'Độ tan của chất rắn thường tăng khi?', options: ['Giảm nhiệt độ', 'Tăng nhiệt độ', 'Tăng áp suất', 'Giữ nguyên nhiệt độ'], correctOption: 1, explanation: 'Nhiệt độ giúp hòa tan nhanh and nhiều hơn.' },
     { id: 'q6.1.6', text: 'Dung dịch bão hòa là dung dịch?', options: ['Không thể hòa tan thêm chất tan', 'Có thể hòa tan thêm chất tan', 'Rất loãng', 'Chất tan không tan nữa'], correctOption: 0, explanation: 'Đạt giới hạn hòa tan ở nhiệt độ xác định.' }
+  ],
+  'l6.2': [
+    { id: 'q6.2.1', text: 'Công thức tính nồng độ phần trăm (C%) là?', options: ['C% = (mct / mdd) * 100%', 'C% = (mct / mdm) * 100%', 'C% = n / V', 'C% = mdd / mct'], correctOption: 0, explanation: 'Tỉ số khối lượng chất tan trên khối lượng dung dịch.' },
+    { id: 'q6.2.2', text: 'Tính C% của dung dịch khi hòa tan 20g đường vào 180g nước?', options: ['20%', '10%', '11.1%', '5%'], correctOption: 1, explanation: 'mdd = 20 + 180 = 200g. C% = 20/200 * 100 = 10%.' },
+    { id: 'q6.2.3', text: 'Nồng độ mol (CM) cho biết điều gì?', options: ['Số gam chất tan trong 1 lít', 'Số mol chất tan trong 1 lít dung dịch', 'Số mol chất tan trong 1kg nước', 'Phần trăm khối lượng'], correctOption: 1, explanation: 'Đơn vị là mol/l hoặc M.' },
+    { id: 'q6.2.4', text: 'Hòa tan 0.5 mol NaCl vào nước thu được 500ml dung dịch. Nồng độ mol là?', options: ['0.5M', '1M', '2.5M', '0.1M'], correctOption: 1, explanation: 'CM = n / V = 0.5 / 0.5 = 1M.' },
+    { id: 'q6.2.5', text: 'Để pha loãng dung dịch axit đặc, ta nên?', options: ['Rót nhanh nước vào axit', 'Rót từ từ axit vào nước và khuấy đều', 'Đổ cả hai vào cùng lúc', 'Đun nóng nước trước'], correctOption: 1, explanation: 'Tránh axit bắn ra gây bỏng nguy hiểm.' }
+  ]
+};
+
+export const CHAPTER_7_QUESTIONS: Record<string, Question[]> = {
+  'l7.1': [
+    { id: 'q7.1.1', text: 'Oxide (Oxit) là hợp chất của hai nguyên tố, trong đó có một nguyên tố là?', options: ['Hiđro', 'Oxi', 'Nitơ', 'Cacbon'], correctOption: 1, explanation: 'Định nghĩa oxit.' },
+    { id: 'q7.1.2', text: 'Oxit nào sau đây là oxit axit?', options: ['CaO', 'CuO', 'SO2', 'Na2O'], correctOption: 2, explanation: 'SO2 là oxit của phi kim S.' },
+    { id: 'q7.1.3', text: 'Oxit bazơ thường là oxit của?', options: ['Phi kim', 'Kim loại', 'Khí hiếm', 'Á kim'], correctOption: 1, explanation: 'Ví dụ: Na2O, CaO, Fe2O3.' }
+  ],
+  'l7.2': [
+    { id: 'q7.2.1', text: 'Chất nào làm quỳ tím chuyển sang màu đỏ?', options: ['Nước', 'Dung dịch Axit', 'Dung dịch Bazơ', 'Muối ăn'], correctOption: 1, explanation: 'Tính chất đặc trưng của axit.' },
+    { id: 'q7.2.2', text: 'Axit clohiđric có công thức là?', options: ['H2SO4', 'HCl', 'HNO3', 'NaOH'], correctOption: 1, explanation: 'Hydrochloric acid.' }
+  ],
+  'l7.3': [
+    { id: 'q7.3.1', text: 'Dung dịch Bazơ (Kiềm) làm quỳ tím chuyển màu?', options: ['Đỏ', 'Xanh', 'Vàng', 'Không đổi màu'], correctOption: 1, explanation: 'Tính chất đặc trưng của bazơ tan.' },
+    { id: 'q7.3.2', text: 'Chỉ số pH < 7 cho biết môi trường?', options: ['Axit', 'Bazơ', 'Trung tính', 'Muối'], correctOption: 0, explanation: 'Thang pH từ 0-14.' }
+  ],
+  'l7.4': [
+    { id: 'q7.4.1', text: 'Phản ứng giữa Axit và Bazơ tạo thành Muối và Nước gọi là?', options: ['Phản ứng hóa hợp', 'Phản ứng phân hủy', 'Phản ứng trung hòa', 'Phản ứng thế'], correctOption: 2, explanation: 'Loại phản ứng quan trọng trong hóa học.' }
+  ],
+  'l7.5': [
+    { id: 'q7.5.1', text: 'Phân bón đạm cung cấp nguyên tố nào cho cây?', options: ['P', 'K', 'N', 'Ca'], correctOption: 2, explanation: 'Đạm cung cấp Nitơ.' },
+    { id: 'q7.5.2', text: 'Phân NPK là loại phân?', options: ['Đơn', 'Kép (hỗn hợp)', 'Vi lượng', 'Hữu cơ'], correctOption: 1, explanation: 'Cung cấp cả N, P, K.' }
   ]
 };

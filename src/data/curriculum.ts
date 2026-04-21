@@ -1,5 +1,5 @@
 import { Chapter, Element } from '../types';
-import { CHAPTER_1_QUESTIONS, CHAPTER_2_QUESTIONS, CHAPTER_3_QUESTIONS, CHAPTER_4_QUESTIONS, CHAPTER_5_QUESTIONS, CHAPTER_6_QUESTIONS } from './questionBank';
+import { CHAPTER_1_QUESTIONS, CHAPTER_2_QUESTIONS, CHAPTER_3_QUESTIONS, CHAPTER_4_QUESTIONS, CHAPTER_5_QUESTIONS, CHAPTER_6_QUESTIONS, CHAPTER_7_QUESTIONS } from './questionBank';
 
 export const CURRICULUM: Chapter[] = [
   {
@@ -105,6 +105,17 @@ export const CURRICULUM: Chapter[] = [
         content: 'Biểu diễn ngắn gọn phản ứng hóa học. Các bước lập: Viết sơ đồ, Cân bằng số nguyên tử mỗi nguyên tố, Viết phương trình.',
         exercises: CHAPTER_2_QUESTIONS['l2.3']
       },
+      { 
+        id: 'l2.4', 
+        title: 'Tốc độ phản ứng và Chất xúc tác', 
+        content: 'Tốc độ phản ứng là độ nhanh chậm của một phản ứng hóa học. Các yếu tố ảnh hưởng: nồng độ, nhiệt độ, diện tích tiếp xúc, áp suất và chất xúc tác.',
+        exercises: CHAPTER_2_QUESTIONS['l2.4'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Tốc độ phản ứng', content: 'Đại lượng chỉ mức độ nhanh chậm của phản ứng hóa học.' },
+          { id: 'cc2', title: 'Chất xúc tác', content: 'Chất làm tăng tốc độ phản ứng nhưng không biến đổi sau khi kết thúc phản ứng.' },
+          { id: 'cc3', title: 'Các yếu tố ảnh hưởng', content: 'Nhiệt độ (tăng T -> tăng tốc độ), Nồng độ (tăng C -> tăng tốc độ), Diện tích tiếp xúc (tăng diện tích -> tăng tốc độ).' }
+        ]
+      },
     ]
   },
   {
@@ -155,38 +166,85 @@ export const CURRICULUM: Chapter[] = [
     id: 'ch6',
     title: 'Chương 6: Dung dịch',
     lessons: [
-      { id: 'l6.1', title: 'Dung dịch và Độ tan', content: 'Dung dịch là hỗn hợp đồng nhất của dung môi và chất tan. Độ tan (S) là số gam chất tan trong 100g nước để tạo dung dịch bòa hòa.', exercises: CHAPTER_6_QUESTIONS['l6.1'] },
+      { id: 'l6.1', title: 'Dung dịch và Độ tan', content: 'Dung dịch là hỗn hợp đồng nhất của dung môi và chất tan. Độ tan (S) là số gam chất tan trong 100g nước để tạo dung dịch bão hòa.', exercises: CHAPTER_6_QUESTIONS['l6.1'] },
+      { 
+        id: 'l6.2', 
+        title: 'Nồng độ Dung dịch', 
+        content: 'Nồng độ cho biết lượng chất tan có trong một lượng dung dịch xác định. Hai loại phổ biến: Nồng độ phần trăm (C%) và Nồng độ mol (CM).',
+        exercises: CHAPTER_6_QUESTIONS['l6.2'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Nồng độ phần trăm (C%)', content: 'Số gam chất tan trong 100g dung dịch. C% = (m_ct / m_dd) * 100%.' },
+          { id: 'cc2', title: 'Nồng độ mol (CM)', content: 'Số mol chất tan trong 1 lít dung dịch. CM = n / V.' },
+          { id: 'cc3', title: 'Pha loãng dung dịch', content: 'Kỹ thuật thêm dung môi vào dung dịch đặc để được dung dịch có nồng độ thấp hơn mong muốn.' }
+        ]
+      },
+    ]
+  },
+  {
+    id: 'ch7',
+    title: 'Chương 7: Một số hợp chất vô cơ thông dụng',
+    lessons: [
+      { 
+        id: 'l7.1', 
+        title: 'Oxide (Oxit)', 
+        content: 'Hợp chất của oxi với một nguyên tố khác. Chia làm 2 loại chính: Oxide acid và Oxide base.',
+        exercises: CHAPTER_7_QUESTIONS['l7.1']
+      },
+      { 
+        id: 'l7.2', 
+        title: 'Acid (Axit)', 
+        content: 'Hợp chất mà phân tử gồm nguyên tử hiđro liên kết với gốc axit. Làm đổi màu quỳ tím thành đỏ.',
+        exercises: CHAPTER_7_QUESTIONS['l7.2']
+      },
+      { 
+        id: 'l7.3', 
+        title: 'Base (Bazơ) và thang pH', 
+        content: 'Hợp chất có nhóm -OH gắn với kim loại. Dung dịch base làm quỳ tím hóa xanh. Thang pH dùng để đo độ acid/base.',
+        exercises: CHAPTER_7_QUESTIONS['l7.3']
+      },
+      { 
+        id: 'l7.4', 
+        title: 'Salt (Muối)', 
+        content: 'Hợp chất gồm kim loại kết hợp với gốc axit. Phản ứng trung hòa giữa acid và base luôn tạo ra muối và nước.',
+        exercises: CHAPTER_7_QUESTIONS['l7.4']
+      },
+      { 
+        id: 'l7.5', 
+        title: 'Phân bón hóa học', 
+        content: 'Cung cấp các nguyên tố N, P, K cho cây trồng. Giúp tăng năng suất và cải thiện chất lượng nông sản.',
+        exercises: CHAPTER_7_QUESTIONS['l7.5']
+      },
     ]
   }
 ];
 
 export const PERIODIC_ELEMENTS: Element[] = [
-  { symbol: 'H', name: 'Hiđro', atomicNumber: 1, atomicMass: 1, category: 'non-metal', row: 1, col: 1 },
-  { symbol: 'He', name: 'Heli', atomicNumber: 2, atomicMass: 4, category: 'rare-gas', row: 1, col: 18 },
-  { symbol: 'Li', name: 'Liti', atomicNumber: 3, atomicMass: 7, category: 'metal', row: 2, col: 1 },
-  { symbol: 'Be', name: 'Beri', atomicNumber: 4, atomicMass: 9, category: 'metal', row: 2, col: 2 },
-  { symbol: 'B', name: 'Bo', atomicNumber: 5, atomicMass: 11, category: 'non-metal', row: 2, col: 13 },
-  { symbol: 'C', name: 'Cacbon', atomicNumber: 6, atomicMass: 12, category: 'non-metal', row: 2, col: 14 },
-  { symbol: 'N', name: 'Nitơ', atomicNumber: 7, atomicMass: 14, category: 'non-metal', row: 2, col: 15 },
-  { symbol: 'O', name: 'Oxi', atomicNumber: 8, atomicMass: 16, category: 'non-metal', row: 2, col: 16 },
-  { symbol: 'F', name: 'Flo', atomicNumber: 9, atomicMass: 19, category: 'non-metal', row: 2, col: 17 },
+  { symbol: 'H', name: 'Hydrogen', atomicNumber: 1, atomicMass: 1, category: 'non-metal', row: 1, col: 1 },
+  { symbol: 'He', name: 'Helium', atomicNumber: 2, atomicMass: 4, category: 'rare-gas', row: 1, col: 18 },
+  { symbol: 'Li', name: 'Lithium', atomicNumber: 3, atomicMass: 7, category: 'metal', row: 2, col: 1 },
+  { symbol: 'Be', name: 'Beryllium', atomicNumber: 4, atomicMass: 9, category: 'metal', row: 2, col: 2 },
+  { symbol: 'B', name: 'Boron', atomicNumber: 5, atomicMass: 11, category: 'non-metal', row: 2, col: 13 },
+  { symbol: 'C', name: 'Carbon', atomicNumber: 6, atomicMass: 12, category: 'non-metal', row: 2, col: 14 },
+  { symbol: 'N', name: 'Nitrogen', atomicNumber: 7, atomicMass: 14, category: 'non-metal', row: 2, col: 15 },
+  { symbol: 'O', name: 'Oxygen', atomicNumber: 8, atomicMass: 16, category: 'non-metal', row: 2, col: 16 },
+  { symbol: 'F', name: 'Fluorine', atomicNumber: 9, atomicMass: 19, category: 'non-metal', row: 2, col: 17 },
   { symbol: 'Ne', name: 'Neon', atomicNumber: 10, atomicMass: 20, category: 'rare-gas', row: 2, col: 18 },
-  { symbol: 'Na', name: 'Natri', atomicNumber: 11, atomicMass: 23, category: 'metal', row: 3, col: 1 },
-  { symbol: 'Mg', name: 'Magie', atomicNumber: 12, atomicMass: 24, category: 'metal', row: 3, col: 2 },
-  { symbol: 'Al', name: 'Nhôm', atomicNumber: 13, atomicMass: 27, category: 'metal', row: 3, col: 13 },
-  { symbol: 'Si', name: 'Silic', atomicNumber: 14, atomicMass: 28, category: 'non-metal', row: 3, col: 14 },
-  { symbol: 'P', name: 'Photpho', atomicNumber: 15, atomicMass: 31, category: 'non-metal', row: 3, col: 15 },
-  { symbol: 'S', name: 'Lưu huỳnh', atomicNumber: 16, atomicMass: 32, category: 'non-metal', row: 3, col: 16 },
-  { symbol: 'Cl', name: 'Clo', atomicNumber: 17, atomicMass: 35.5, category: 'non-metal', row: 3, col: 17 },
-  { symbol: 'Ar', name: 'Agon', atomicNumber: 18, atomicMass: 39.9, category: 'rare-gas', row: 3, col: 18 },
-  { symbol: 'K', name: 'Kali', atomicNumber: 19, atomicMass: 39, category: 'metal', row: 4, col: 1 },
-  { symbol: 'Ca', name: 'Canxi', atomicNumber: 20, atomicMass: 40, category: 'metal', row: 4, col: 2 },
-  { symbol: 'Fe', name: 'Sắt', atomicNumber: 26, atomicMass: 56, category: 'metal', row: 4, col: 8 },
-  { symbol: 'Cu', name: 'Đồng', atomicNumber: 29, atomicMass: 64, category: 'metal', row: 4, col: 11 },
-  { symbol: 'Zn', name: 'Kẽm', atomicNumber: 30, atomicMass: 65, category: 'metal', row: 4, col: 12 },
-  { symbol: 'Ag', name: 'Bạc', atomicNumber: 47, atomicMass: 108, category: 'metal', row: 5, col: 11 },
-  { symbol: 'Ba', name: 'Bari', atomicNumber: 56, atomicMass: 137, category: 'metal', row: 6, col: 2 },
-  { symbol: 'Au', name: 'Vàng', atomicNumber: 79, atomicMass: 197, category: 'metal', row: 6, col: 11 },
-  { symbol: 'Hg', name: 'Thủy ngân', atomicNumber: 80, atomicMass: 201, category: 'metal', row: 6, col: 12 },
-  { symbol: 'Pb', name: 'Chì', atomicNumber: 82, atomicMass: 207, category: 'metal', row: 6, col: 14 },
+  { symbol: 'Na', name: 'Sodium', atomicNumber: 11, atomicMass: 23, category: 'metal', row: 3, col: 1 },
+  { symbol: 'Mg', name: 'Magnesium', atomicNumber: 12, atomicMass: 24, category: 'metal', row: 3, col: 2 },
+  { symbol: 'Al', name: 'Aluminium', atomicNumber: 13, atomicMass: 27, category: 'metal', row: 3, col: 13 },
+  { symbol: 'Si', name: 'Silicon', atomicNumber: 14, atomicMass: 28, category: 'non-metal', row: 3, col: 14 },
+  { symbol: 'P', name: 'Phosphorus', atomicNumber: 15, atomicMass: 31, category: 'non-metal', row: 3, col: 15 },
+  { symbol: 'S', name: 'Sulfur', atomicNumber: 16, atomicMass: 32, category: 'non-metal', row: 3, col: 16 },
+  { symbol: 'Cl', name: 'Chlorine', atomicNumber: 17, atomicMass: 35.5, category: 'non-metal', row: 3, col: 17 },
+  { symbol: 'Ar', name: 'Argon', atomicNumber: 18, atomicMass: 39.9, category: 'rare-gas', row: 3, col: 18 },
+  { symbol: 'K', name: 'Potassium', atomicNumber: 19, atomicMass: 39, category: 'metal', row: 4, col: 1 },
+  { symbol: 'Ca', name: 'Calcium', atomicNumber: 20, atomicMass: 40, category: 'metal', row: 4, col: 2 },
+  { symbol: 'Fe', name: 'Iron', atomicNumber: 26, atomicMass: 56, category: 'metal', row: 4, col: 8 },
+  { symbol: 'Cu', name: 'Copper', atomicNumber: 29, atomicMass: 64, category: 'metal', row: 4, col: 11 },
+  { symbol: 'Zn', name: 'Zinc', atomicNumber: 30, atomicMass: 65, category: 'metal', row: 4, col: 12 },
+  { symbol: 'Ag', name: 'Silver', atomicNumber: 47, atomicMass: 108, category: 'metal', row: 5, col: 11 },
+  { symbol: 'Ba', name: 'Barium', atomicNumber: 56, atomicMass: 137, category: 'metal', row: 6, col: 2 },
+  { symbol: 'Au', name: 'Gold', atomicNumber: 79, atomicMass: 197, category: 'metal', row: 6, col: 11 },
+  { symbol: 'Hg', name: 'Mercury', atomicNumber: 80, atomicMass: 201, category: 'metal', row: 6, col: 12 },
+  { symbol: 'Pb', name: 'Lead', atomicNumber: 82, atomicMass: 207, category: 'metal', row: 6, col: 14 },
 ];
