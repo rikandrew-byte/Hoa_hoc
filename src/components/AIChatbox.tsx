@@ -68,7 +68,7 @@ export function AIChatbox() {
       }));
 
       const body = {
-        model: 'llama3-70b-8192',
+        model: 'llama3-8b-8192',
         messages: messagesWithSystem,
         temperature: 0.7,
         max_tokens: 1024
@@ -99,7 +99,9 @@ export function AIChatbox() {
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Groq Error:', error);
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi kết nối AI. Vui lòng kiểm tra API key tại https://console.groq.com/keys' }]);
+      const errorMessage = error instanceof Error ? error.message : 'Lỗi không xác định.';
+      const displayMessage = `**Lỗi kết nối AI:**\n\n\`\`\`\n${errorMessage}\n\`\`\`\n\nVui lòng kiểm tra lại API key của bạn trên **Render** và đảm bảo nó còn hiệu lực tại Groq Console.`;
+      setMessages(prev => [...prev, { role: 'assistant', content: displayMessage }]);
     } finally {
       setIsLoading(false);
     }
@@ -146,7 +148,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: LLAMA3-70B</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: LLAMA3-8B</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
@@ -165,6 +167,7 @@ export function AIChatbox() {
                  components={{
                     p: ({children}) => <p className="mb-2 last:mb-0">{children}</p>,
                     ul: ({children}) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
+                    pre: ({children}) => <pre className="bg-slate-200 dark:bg-black/20 p-3 rounded-md text-xs whitespace-pre-wrap my-2">{children}</pre>,
                     li: ({children}) => <li className="mb-1">{children}</li>,
                     code: ({children}) => <code className="bg-slate-200 dark:bg-white/10 px-1 py-0.5 rounded font-mono text-[11px] text-emerald-600 dark:text-emerald-400">{children}</code>,
                     strong: ({children}) => <strong className="font-bold highlight-text">{children}</strong>

@@ -74,3 +74,12 @@
 
 ### 3. Sửa lỗi (Bug Fix)
 - Sửa lỗi type trong `src/types.ts` bằng cách thêm `row` và `col` vào `Element` interface, đảm bảo tương thích với component `PeriodicTable` mới.
+
+---
+
+## Ngày 24/04/2026 (Gemini Code Assist)
+
+### 1. Sửa lỗi (Bug Fix) - AI Model Decommissioned
+- **Vấn đề**: Model `llama3-70b-8192` đã bị Groq ngừng hỗ trợ, gây ra lỗi 400 khi gọi API.
+- **Giải pháp**: Cập nhật model AI trong `src/components/AIChatbox.tsx` sang model `llama3-8b-8192` đang hoạt động.
+- **Giao diện**: Cập nhật tên model hiển thị trên giao diện chatbox cho phù hợp.
