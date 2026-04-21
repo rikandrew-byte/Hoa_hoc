@@ -5,15 +5,28 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 
-@media (orientation: landscape) and (max-width: 900px) {
+@media (orientation: landscape) and (max-height: 500px) {
   .glass-panel, .card, .card-elevated {
-    padding: 0.75rem !important;
+    padding: 0.5rem !important;
   }
   .rounded-3xl {
-    border-radius: 1rem !important;
+    border-radius: 0.75rem !important;
   }
-  [class*="h-\[600px\]"] {
-    height: 320px !important;
+  .hide-on-landscape {
+    display: none !important;
+  }
+  .shrink-on-landscape {
+    scale: 0.9;
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .glass-panel, .card {
+    padding: 1rem;
   }
 }
 

@@ -11,23 +11,23 @@ interface HeaderProps {
 
 export function Header({ activeTab, onTabChange, isDark, onToggleTheme }: HeaderProps) {
   return (
-    <header className="h-16 flex-shrink-0 z-50 bg-[var(--bg-main)]/80 backdrop-blur-2xl border-b border-[var(--panel-border)] relative">
+    <header className="h-14 md:h-16 flex-shrink-0 z-50 bg-[var(--bg-main)]/80 backdrop-blur-2xl border-b border-[var(--panel-border)] relative">
       {/* Top gradient line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-4 h-full flex items-center justify-between w-full">
         <motion.div 
-          className="flex items-center gap-4"
+          className="flex items-center gap-3 md:gap-4"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/25 group flex-shrink-0 hover:shadow-emerald-500/40 transition-shadow">
-            <Beaker className="text-white transition-transform group-hover:scale-110 group-hover:rotate-12" size={24} />
+          <div className="w-9 h-9 md:w-11 md:h-11 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/25 group flex-shrink-0 hover:shadow-emerald-500/40 transition-all">
+            <Beaker className="text-white transition-transform group-hover:scale-110 group-hover:rotate-12" size={18} md:size={24} />
           </div>
           <div className="hidden xs:block">
-            <h1 className="text-base font-bold tracking-wide highlight-text">Lab Hóa Học 8</h1>
-            <div className="flex items-center gap-2">
+            <h1 className="text-sm md:text-base font-bold tracking-wide highlight-text">Lab Hóa Học 8</h1>
+            <div className="flex items-center gap-2 hide-on-landscape">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]" />
               <p className="mono-label !opacity-70">System Active</p>
             </div>
@@ -67,14 +67,14 @@ export function Header({ activeTab, onTabChange, isDark, onToggleTheme }: Header
         </nav>
 
         <motion.div 
-          className="flex items-center gap-4"
+          className="flex items-center gap-3 md:gap-4"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
           <button
             onClick={onToggleTheme}
-            className="w-11 h-11 rounded-xl flex items-center justify-center bg-[var(--panel-bg)] border border-[var(--panel-border)] text-[var(--text-secondary)] hover:text-emerald-500 hover:border-emerald-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
+            className="w-9 h-9 md:w-11 md:h-11 rounded-xl flex items-center justify-center bg-[var(--panel-bg)] border border-[var(--panel-border)] text-[var(--text-secondary)] hover:text-emerald-500 hover:border-emerald-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10"
             title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
             aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
@@ -91,7 +91,7 @@ export function Header({ activeTab, onTabChange, isDark, onToggleTheme }: Header
             </AnimatePresence>
           </button>
           
-          <div className="hidden lg:block text-right flex-shrink-0">
+          <div className="hidden lg:block text-right flex-shrink-0 hide-on-landscape">
             <p className="mono-label !opacity-60">Author: Andrew Tseng</p>
             <p className="text-[10px] font-mono text-emerald-500 flex items-center justify-end gap-1">
               <Sparkles size={10} />

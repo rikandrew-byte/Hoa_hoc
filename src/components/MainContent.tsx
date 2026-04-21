@@ -15,6 +15,7 @@ interface MainContentProps {
   onSelectConcept: (concept: {id: string; title: string; content: string} | null) => void;
   selectedLab: {id: string; title: string; description: string} | null;
   onSelectLab: (lab: {id: string; title: string; description: string} | null) => void;
+  onOpenSidebar?: () => void;
 }
 
 export function MainContent({ 
@@ -26,11 +27,12 @@ export function MainContent({
   onSelectConcept,
   selectedLab,
   onSelectLab,
+  onOpenSidebar,
 }: MainContentProps) {
   return (
     <div className={cn(
-      "flex-1 overflow-y-auto pr-2 scrollbar-hide pb-20 lg:pb-0",
-      activeTab === 'content' && !selectedLesson && "hidden lg:block" // Hide content area on mobile if no lesson picked (show list instead)
+      "flex-1 overflow-y-auto pr-1 md:pr-2 scrollbar-hide h-full",
+      activeTab === 'content' && !selectedLesson && "hidden lg:block"
     )}>
       <motion.div
         key={activeTab + (selectedLesson?.id || '')}
@@ -40,17 +42,18 @@ export function MainContent({
         className="h-full"
       >
         {activeTab === 'content' && (
-          <div className="glass-panel rounded-3xl p-6 md:p-10 min-h-[calc(100vh-160px)] lg:min-h-0 flex flex-col relative overflow-hidden">
+          <div className="glass-panel rounded-3xl p-5 md:p-10 min-h-full lg:min-h-0 flex flex-col relative overflow-hidden">
             <div className="absolute top-0 right-0 p-8 mono-label text-[40px] opacity-[0.03] select-none pointer-events-none">DATABASE_ACCESS</div>
             
             {selectedLesson ? (
               <>
-                <div className="flex items-center gap-4 mb-10">
+                <div className="flex items-center gap-3 mb-6 md:mb-10">
                   <button 
-                    onClick={() => onSelectLesson(null)}
-                    className="lg:hidden flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-500 text-[10px] font-mono border border-emerald-500/20"
+                    onClick={onOpenSidebar}
+                    className="lg:hidden p-2 rounded-xl bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
+                    aria-label="Open menu"
                   >
-                    ← Quay lại danh mục
+                    <BookOpen size={18} />
                   </button>
                   <div className="hidden lg:block px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px] font-mono rounded">
                     REF_ID: {selectedLesson.id}
@@ -58,7 +61,7 @@ export function MainContent({
                   <div className="h-px flex-1 bg-[var(--panel-border)]" />
                 </div>
                 
-                <h2 className="text-3xl md:text-4xl font-black highlight-text mb-8 tracking-tight">{selectedLesson.title}</h2>
+                <h2 className="text-2xl md:text-4xl font-black highlight-text mb-6 md:mb-8 tracking-tight">{selectedLesson.title}</h2>
                 
                 <div className="flex-1 overflow-y-auto pr-2 scrollbar-hide">
                   <div className="max-w-none text-slate-600 dark:text-slate-200 text-base md:text-lg leading-relaxed font-sans mb-12">
@@ -184,9 +187,12 @@ export function MainContent({
               <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 py-20">
                 <div className="relative">
                   <div className="absolute inset-0 bg-emerald-500 blur-3xl opacity-10 animate-pulse" />
-                  <div className="w-24 h-24 rounded-full border border-emerald-500/20 flex items-center justify-center relative bg-[var(--bg-main)]">
+                  <button 
+                    onClick={onOpenSidebar}
+                    className="w-24 h-24 rounded-full border border-emerald-500/20 flex items-center justify-center relative bg-[var(--bg-main)] hover:border-emerald-500/50 transition-colors"
+                  >
                     <BookOpen size={48} className="text-emerald-500/20" />
-                  </div>
+                  </button>
                 </div>
                 <div className="max-w-xs space-y-3">
                   <h3 className="highlight-text font-bold tracking-wider uppercase text-sm">Laboratory Initializing...</h3>

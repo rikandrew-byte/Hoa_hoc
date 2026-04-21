@@ -26,7 +26,7 @@ export interface Element {
   name: string;
   atomicNumber: number;
   atomicMass: number;
-  category: 'metal' | 'non-metal' | 'gas' | 'rare-gas';
+  category: 'alkali' | 'alkaline-earth' | 'transition-metal' | 'post-transition-metal' | 'metalloid' | 'non-metal' | 'halogen' | 'noble-gas' | 'lanthanide' | 'actinide';
   row: number;
   col: number;
 }

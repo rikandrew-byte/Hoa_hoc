@@ -16,10 +16,12 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedConcept, setSelectedConcept] = useState<{id: string; title: string; content: string} | null>(null);
   const [selectedLab, setSelectedLab] = useState<{id: string; title: string; description: string} | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Simulate loading for smooth transitions
   const handleTabChange = (tab: typeof activeTab) => {
     setIsLoading(true);
+    setIsSidebarOpen(false); // Close sidebar on tab change
     setTimeout(() => {
       setActiveTab(tab);
       setIsLoading(false);
@@ -58,22 +60,33 @@ export default function App() {
             <Sidebar
               activeTab={activeTab}
               selectedLesson={selectedLesson}
-              onSelectLesson={setSelectedLesson}
+              onSelectLesson={(lesson) => {
+                setSelectedLesson(lesson);
+                setIsSidebarOpen(false); // Close drawer after selection
+              }}
               onTabChange={handleTabChange}
               isDark={isDark}
+              isOpen={isSidebarOpen}
+              onClose={() => setIsSidebarOpen(false)}
             />
 
             {/* Main Content Area */}
-            <MainContent
-              activeTab={activeTab}
-              selectedLesson={selectedLesson}
-              onSelectLesson={setSelectedLesson}
-              onTabChange={handleTabChange}
-              selectedConcept={selectedConcept}
-              onSelectConcept={setSelectedConcept}
-              selectedLab={selectedLab}
-              onSelectLab={setSelectedLab}
-            />
+            <div className={cn(
+              "flex-1 flex flex-col overflow-hidden pb-16 md:pb-0", // Add padding for mobile nav
+              activeTab === 'ai' && "pb-20" // Extra padding for AI input
+            )}>
+              <MainContent
+                activeTab={activeTab}
+                selectedLesson={selectedLesson}
+                onSelectLesson={setSelectedLesson}
+                onTabChange={handleTabChange}
+                selectedConcept={selectedConcept}
+                onSelectConcept={setSelectedConcept}
+                selectedLab={selectedLab}
+                onSelectLab={setSelectedLab}
+                onOpenSidebar={() => setIsSidebarOpen(true)}
+              />
+            </div>
           </div>
         </main>
 
