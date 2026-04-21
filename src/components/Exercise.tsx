@@ -192,7 +192,7 @@ export function Exercise({ questions, onComplete }: ExerciseProps) {
                     "exercise-choice flex items-center justify-between p-5 rounded-2xl border text-left transition-all group relative overflow-hidden",
                   isSelected 
                     ? "border-emerald-500/50 bg-emerald-500/5 text-slate-900 dark:text-white" 
-                    : "border-[var(--panel-border)] hover:border-emerald-500/30 hover:bg-slate-100 dark:hover:bg-white/5",
+                    : "border-[var(--panel-border)] hover:border-emerald-500/30 hover:bg-slate-100 dark:hover:bg-white/10",
                   showCorrectStatus && "border-emerald-500 bg-emerald-500/10 text-emerald-500",
                   showWrongStatus && "border-red-500 bg-red-500/10 text-red-500"
                 )}
