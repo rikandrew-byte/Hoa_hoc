@@ -27,4 +27,6 @@ export interface Element {
   atomicNumber: number;
   atomicMass: number;
   category: 'metal' | 'non-metal' | 'gas' | 'rare-gas';
+  row: number;
+  col: number;
 }

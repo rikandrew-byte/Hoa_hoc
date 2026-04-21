@@ -58,3 +58,19 @@
 
 ### 3. Commit và Push các thay đổi
 - Gộp các thay đổi trên vào một commit và đẩy lên branch `main` của repository.
+
+---
+
+## Ngày 23/04/2026 (Gemini Code Assist)
+
+### 1. Cải thiện Giao diện (UI/UX) & Responsive
+- **Tái cấu trúc `PeriodicTable.tsx`**: Xây dựng lại hoàn toàn component để responsive, cho phép cuộn ngang trên di động và thêm modal hiển thị chi tiết thông tin nguyên tố.
+- **Cập nhật dữ liệu**: Thêm thuộc tính `row` và `col` vào `PERIODIC_ELEMENTS` để định vị chính xác trên lưới CSS.
+- **Dọn dẹp CSS**: Loại bỏ các quy tắc `@media` ghi đè cứng nhắc trong `index.css` để tận dụng hệ thống responsive của Tailwind.
+
+### 2. Bảo mật & Cấu hình
+- **Xóa file nhạy cảm**: Xóa hoàn toàn file `DEPLOYMENT_NOTES.md` để loại bỏ các API key đã bị lộ khỏi repository.
+- **Cập nhật giao diện AI**: Sửa tên model hiển thị trong `AIChatbox.tsx` thành `LLAMA3-70B`.
+
+### 3. Sửa lỗi (Bug Fix)
+- Sửa lỗi type trong `src/types.ts` bằng cách thêm `row` và `col` vào `Element` interface, đảm bảo tương thích với component `PeriodicTable` mới.

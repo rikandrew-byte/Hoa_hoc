@@ -146,7 +146,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">ID: MIXTRAL_8X7B</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: LLAMA3-70B</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
