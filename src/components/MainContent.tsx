@@ -190,7 +190,7 @@ export function MainContent({
                 </div>
                 <div className="max-w-xs space-y-3">
                   <h3 className="highlight-text font-bold tracking-wider uppercase text-sm">Laboratory Initializing...</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-mono">Select a module from the command panel to synchronize course data.</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-mono">Select a module from the command panel to synchronize course data.</p>
                 </div>
               </div>
             )}
@@ -263,7 +263,7 @@ export function MainContent({
                     </div>
                     <h2 className="text-3xl md:text-4xl font-black highlight-text mb-4 tracking-tighter uppercase">Thầy giáo AI</h2>
                     <p className="text-slate-500 dark:text-slate-400 text-sm max-w-sm font-mono leading-relaxed">
-                      Truy cập trực tiếp vào lõi xử lý Groq để phân tích cấu trúc, cân bằng phương trình và hướng dẫn thí nghiệm.
+                      Truy cập trực tiếp vào lõi xử lý Gemini để phân tích cấu trúc, cân bằng phương trình và hướng dẫn thí nghiệm.
                     </p>
                   </div>
                   <div className="hidden md:block">

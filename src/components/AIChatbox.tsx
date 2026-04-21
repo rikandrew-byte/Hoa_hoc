@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
-import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/genai";
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 import { cn } from '../lib/utils';
 
 // Pre-calculate API key safely
@@ -58,7 +58,7 @@ export function AIChatbox() {
     try {
       const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
       const model = genAI.getGenerativeModel({ 
-        model: "gemini-pro",
+        model: "gemini-2.5-flash",
         safetySettings: [ // Add safety settings to reduce blocking
             { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
             { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
@@ -103,7 +103,11 @@ export function AIChatbox() {
     } catch (error) {
       console.error('Gemini Error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Lỗi không xác định.';
-      const displayMessage = `**Lỗi kết nối AI (Gemini):**\n\n\`\`\`\n${errorMessage}\n\`\`\`\n\nVui lòng kiểm tra lại API key của bạn trên **Render** và đảm bảo nó được cấp quyền cho Gemini API.`;
+      const displayMessage = errorMessage.includes("503") 
+        ? `**Máy chủ AI đang quá tải (Lỗi 503):**\n\nVui lòng đợi một lát và thử lại. Gói miễn phí có thể gặp tình trạng này khi cao điểm.`
+        : errorMessage.includes("429")
+        ? `**Hết hạn mức hoặc quá nhanh (Lỗi 429):**\n\nVui lòng chậm lại một chút hoặc kiểm tra hạn mức API trong Google AI Studio.`
+        : `**Lỗi kết nối AI (Gemini):**\n\n\`\`\`\n${errorMessage}\n\`\`\`\n\nGhi chú: Gói **Pro** đã yêu cầu trả phí từ 04/2026, hãy đảm bảo bạn dùng model **Flash**.`;
       setMessages(prev => [...prev, { role: 'assistant', content: displayMessage }]);
     } finally {
       setIsLoading(false);
@@ -151,7 +155,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: GEMINI-PRO</div>
+        <div className="mono-label text-slate-400 dark:text-slate-500">MODEL: GEMINI-2.5-FLASH</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
@@ -163,8 +167,8 @@ export function AIChatbox() {
             <div className={cn(
               "p-4 rounded-2xl text-sm leading-relaxed border transition-colors",
               m.role === 'user' 
-                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-100" 
-                : "bg-slate-100 dark:bg-white/5 border-[var(--panel-border)] text-slate-700 dark:text-slate-300"
+                ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:bg-emerald-500/15 dark:border-emerald-500/40 dark:text-emerald-300" 
+                : "bg-slate-100 dark:bg-slate-800/60 border-[var(--panel-border)] text-slate-700 dark:text-slate-200"
             )}>
               <ReactMarkdown 
                  components={{
@@ -189,7 +193,7 @@ export function AIChatbox() {
         )}
       </div>
 
-      <div className="p-6 bg-slate-50 dark:bg-white/5 border-t border-[var(--panel-border)] flex gap-3 items-end">
+      <div className="p-6 bg-slate-50 dark:bg-slate-900/60 border-t border-[var(--panel-border)] flex gap-3 items-end">
         <textarea
           ref={textareaRef}
           rows={1}

@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind 4 utilities */
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 @media (orientation: landscape) and (max-width: 900px) {
   .glass-panel, .card, .card-elevated {
     padding: 0.75rem !important;
@@ -39,17 +43,17 @@
   }
 
   .dark {
-    --bg-main: #0f172a; /* slate-900 */
-    --bg-secondary: #1e293b; /* slate-800 */
-    --text-main: #f8fafc; /* slate-50 */
-    --text-secondary: #94a3b8; /* slate-400 */
-    --text-muted: #64748b; /* slate-500 */
-    --panel-bg: #1e293b; /* slate-800 */
-    --panel-border: #334155; /* slate-700 */
-    --accent: #22C55E;
+    --bg-main: #020617; /* Slate-950 - Deep base */
+    --bg-secondary: #0f172a; /* Slate-900 - Secondary areas */
+    --text-main: #f8fafc; /* Slate-50 */
+    --text-secondary: #cbd5e1; /* Slate-300 - Brighter secondary text */
+    --text-muted: #94a3b8; /* Slate-400 */
+    --panel-bg: #1e293b; /* Slate-800 - Clear panel distinction */
+    --panel-border: #334155; /* Slate-700 */
+    --accent: #10b981; /* Standard emerald */
     --accent-hover: #34d399;
-    --accent-glow: rgba(34, 197, 94, 0.25);
-    --accent-soft: rgba(34, 197, 94, 0.08);
+    --accent-glow: rgba(16, 185, 129, 0.3);
+    --accent-soft: rgba(16, 185, 129, 0.12);
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -4px rgba(0, 0, 0, 0.6);
