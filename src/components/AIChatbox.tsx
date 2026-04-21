@@ -7,6 +7,12 @@ import { cn } from '../lib/utils';
 // Pre-calculate API key safely
 const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
+// Debug: Log env status
+console.log('[AIChatbox] ENV checking:', {
+  VITE_GOOGLE_API_KEY: GOOGLE_API_KEY ? 'SET (len:' + GOOGLE_API_KEY.length + ')' : 'NOT_SET',
+  allEnv: Object.keys(import.meta.env).filter(k => k.startsWith('VITE_'))
+});
+
 interface Message {
   role: 'user' | 'assistant';
   content: string;
