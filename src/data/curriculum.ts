@@ -141,7 +141,7 @@ export const CURRICULUM: Chapter[] = [
         content: 'Oxi là phi kim hoạt động hóa học mạnh, đặc biệt ở nhiệt độ cao. Tác dụng với phi kim, kim loại và hợp chất.',
         exercises: CHAPTER_4_QUESTIONS['l4.1']
       },
-      { id: 'l4.2', title: 'Sự oxi hóa và Phản ứng hóa hợp', content: 'Sự tác dụng của oxi với một chất là sự oxi hóa. Phản ứng hóa hợp tạo ra 1 chất duy nhất từ nhiều chất ban đầu.', exercises: CHAPTER_4_QUESTIONS['l4.1'] },
+      { id: 'l4.2', title: 'Sự oxi hóa và Phản ứng hóa hợp', content: 'Sự tác dụng của oxi với một chất là sự oxi hóa. Phản ứng hóa hợp tạo ra 1 chất duy nhất từ nhiều chất ban đầu.', exercises: CHAPTER_4_QUESTIONS['l4.2'] },
     ]
   },
   {
