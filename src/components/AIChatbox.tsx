@@ -58,7 +58,7 @@ export function AIChatbox() {
     try {
       const ai = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
       const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash-exp',
+        model: 'gemini-2.5-flash',
         contents: [...messages, userMessage].map(m => ({
           role: m.role === 'assistant' ? 'assistant' : 'user',
           parts: [{ text: m.content }]
@@ -127,7 +127,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">ID: GEMINI_3_FLASH</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">ID: GEMINI_2_5_FLASH</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
