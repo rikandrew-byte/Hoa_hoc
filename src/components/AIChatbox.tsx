@@ -4,7 +4,8 @@ import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../lib/utils';
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY || import.meta.env.GOOGLE_API_KEY });
+// Pre-calculate API key safely
+const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
 interface Message {
   role: 'user' | 'assistant';
@@ -42,9 +43,16 @@ export function AIChatbox() {
     setInput('');
     setIsLoading(true);
 
+    if (!GOOGLE_API_KEY) {
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GOOGLE_API_KEY.' }]);
+      setIsLoading(false);
+      return;
+    }
+
     try {
+      const ai = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-1.5-flash',
         contents: [...messages, userMessage].map(m => ({
           role: m.role === 'assistant' ? 'assistant' : 'user',
           parts: [{ text: m.content }]
