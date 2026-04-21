@@ -50,7 +50,7 @@ export function AIChatbox() {
     setIsLoading(true);
 
     if (!GOOGLE_API_KEY) {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GROQ_API_KEY.' }]);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GOOGLE_API_KEY.' }]);
       setIsLoading(false);
       return;
     }

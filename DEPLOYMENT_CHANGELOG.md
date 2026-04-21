@@ -105,3 +105,13 @@
 ### 2. Cải thiện giao diện Dark Mode
 - **Vấn đề**: Các màu nền và màu chữ trong chế độ tối quá gần nhau, gây khó đọc.
 - **Giải pháp**: Tinh chỉnh lại bảng màu trong `src/index.css` để tăng độ tương phản. Loại bỏ các quy tắc CSS `!important` không cần thiết.
+
+---
+
+## Ngày 27/04/2026 (Gemini Code Assist)
+
+### 1. Sửa lỗi Deploy trên Render
+- **Vấn đề**: Lỗi build trên Render do `package-lock.json` không đồng bộ với `package.json` sau khi cập nhật thư viện `@google/genai`.
+- **Giải pháp**: Hướng dẫn người dùng xóa `node_modules` và `package-lock.json`, sau đó chạy lại `npm install` để tạo lại lock file chính xác.
+- **Sửa lỗi phụ**: Cập nhật thông báo lỗi trong `AIChatbox.tsx` để trỏ đến đúng biến môi trường (`VITE_GOOGLE_API_KEY`).
+- **Cải thiện tài liệu**: Cập nhật file `README.md` với hướng dẫn cấu hình biến môi trường chính xác cho việc chạy local.
