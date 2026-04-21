@@ -68,7 +68,7 @@ export function AIChatbox() {
       }));
 
       const body = {
-        model: 'mixtral-8x7b-32768',
+        model: 'llama3-70b-8192',
         messages: messagesWithSystem,
         temperature: 0.7,
         max_tokens: 1024
