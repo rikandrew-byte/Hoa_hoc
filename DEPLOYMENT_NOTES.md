@@ -7,7 +7,7 @@
 - **Thư mục local**: `d:/Software/học-tốt-hóa-học-8`
 
 ## Thông Tin API
-- **API Key (Gemini)**: `AIzaSyBYMZtbdYxGvMPl1gZjz6pY_3CXvLgrzOU`
+- **API Key (Gemini)**: `AIzaSyA_5xvuHUw4jVQZZIqQqFMKWnVNmW30uYQ`
 - **Biến môi trường**: `VITE_GOOGLE_API_KEY` hoặc `GOOGLE_API_KEY`
 - **File cấu hình**: `.env` (đã tạo trong project)
 
