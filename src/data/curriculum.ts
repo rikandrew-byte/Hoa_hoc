@@ -10,31 +10,76 @@ export const CURRICULUM: Chapter[] = [
         id: 'l1.1', 
         title: 'Chất và Sự biến đổi chất', 
         content: 'Chất có ở khắp nơi. Chất có những tính chất vật lý và hóa học nhất định. Sự biến đổi chất chia làm hiện tượng vật lý và hiện tượng hóa học.',
-        exercises: CHAPTER_1_QUESTIONS['l1.1']
+        exercises: CHAPTER_1_QUESTIONS['l1.1'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Tính chất vật lý', content: 'Là tính chất có thể quan sát được mà không làm chất biến đổi thành chất khác: màu sắc, trạng thái, mùi, vị, điểm nóng chảy, điểm sôi.' },
+          { id: 'cc2', title: 'Tính chất hóa học', content: 'Là khả năng chất biến đổi thành chất khác: tính cháy, tính oxi hóa, tính axit.' },
+          { id: 'cc3', title: 'Hiện tượng vật lý', content: 'Sự biến đổi về trạng thái, kích thước nhưng không tạo chất mới: nóng chảy, bay hơi, đông đặc.' }
+        ],
+        labRequirements: [
+          { id: 'lr1', title: 'Thí nghiệm tan chảy', description: 'Đun nóng để quan sát sự chuyển trạng thái của sáp parafin' },
+          { id: 'lr2', title: 'Dụng cụ', description: 'Đèn cồn, cốc thủy tinh, kẹp sắt' }
+        ]
       },
       { 
         id: 'l1.2', 
         title: 'Nguyên tử và Cấu tạo nguyên tử', 
         content: 'Nguyên tử là hạt cực kỳ nhỏ, trung hòa về điện. Cấu tạo gồm hạt nhân (proton, neutron) và vỏ nguyên tử (electron).',
-        exercises: CHAPTER_1_QUESTIONS['l1.2']
+        exercises: CHAPTER_1_QUESTIONS['l1.2'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Cấu tạo nguyên tử', content: 'Proton (mang điện dương), Neutron (không mang điện) trong hạt nh��n; Electron (mang điện âm) chuyển động xung quanh.' },
+          { id: 'cc2', title: 'Điện tích hạt nhân', content: 'Số proton = số electron = số hiệu nguyên tử, quyết định tính chất hóa học của nguyên tố.' },
+          { id: 'cc3', title: 'Khối lượng nguyên tử', content: 'Khối lượng tập trung chủ yếu ở hạt nhân (proton + neutron).' }
+        ],
+        labRequirements: [
+          { id: 'lr1', title: 'Mô hình nguyên tử', description: 'Sử dụng mô hình cầu để thể hiện cấu trúc' },
+          { id: 'lr2', title: 'Sơ đồ', description: 'Vẽ sơ đồ cấu tạo nguyên tử H, He, C, O' }
+        ]
       },
       { 
         id: 'l1.3', 
         title: 'Nguyên tố hóa học', 
         content: 'Tập hợp các nguyên tử cùng loại có cùng số proton. Kí hiệu hóa học biểu diễn nguyên tố và chỉ một nguyên tử của nguyên tố đó.',
-        exercises: CHAPTER_1_QUESTIONS['l1.3']
+        exercises: CHAPTER_1_QUESTIONS['l1.3'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Nguyên tố hóa học', content: 'Tập hợp các nguyên tử cùng loại (cùng số proton).' },
+          { id: 'cc2', title: 'Kí hiệu hóa học', content: 'Chữ cái đầu tiên viết hoa (latin), có thể thêm chữ cái thứ hai viết thường: Na (Natri), Ca (Canxi).' },
+          { id: 'cc3', title: 'Nguyên tử khối', content: 'Khối lượng của 1 nguyên tử, đơn vị u (đvC).' }
+        ],
+        labRequirements: [
+          { id: 'lr1', title: 'Bảng tuần hoàn', description: 'Tra cứu kí hiệu và nguyên tử khối của các nguyên tố' },
+          { id: 'lr2', title: 'Tìm hiểu', description: 'Các nguyên tố phổ biến: H, O, C, N, Na, Fe, Ca, Cu' }
+        ]
       },
       { 
         id: 'l1.4', 
         title: 'Đơn chất, Hợp chất - Phân tử', 
         content: 'Đơn chất tạo nên từ 1 nguyên tố. Hợp chất tạo nên từ 2 nguyên tố trở lên. Phân tử là hạt đại diện cho chất.',
-        exercises: CHAPTER_1_QUESTIONS['l1.4']
+        exercises: CHAPTER_1_QUESTIONS['l1.4'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Đơn chất', content: 'Chất được tạo từ 1 nguyên tố: O₂ (oxi), N₂ (nitơ), Fe (sắt), Cu (đồng).' },
+          { id: 'cc2', title: 'Hợp chất', content: 'Chất được tạo từ 2 nguyên tố trở lên: H₂O (nước), CO₂ (cacbon đioxit), NaCl (muối ăn).' },
+          { id: 'cc3', title: 'Phân tử', content: 'Hạt gồm các nguyên tử liên kết với nhau, đại diện cho chất.' }
+        ],
+        labRequirements: [
+          { id: 'lr1', title: 'Phân loại', description: 'Phân biệt đơn chất và hợp chất trong danh sách chất cho trước' },
+          { id: 'lr2', title: 'Ví dụ', description: 'Liệt kê 3 đơn chất và 3 hợp chất quen thuộc' }
+        ]
       },
       { 
         id: 'l1.5', 
         title: 'Công thức hóa học và Hóa trị', 
         content: 'Cách lập công thức hóa học dựa trên quy tắc hóa trị: tích chỉ số và hóa trị của nguyên tố này bằng tích chỉ số và hóa trị của nguyên tố kia.',
-        exercises: CHAPTER_1_QUESTIONS['l1.5']
+        exercises: CHAPTER_1_QUESTIONS['l1.5'],
+        coreConcepts: [
+          { id: 'cc1', title: 'Công thức hóa học', content: 'Biểu diễn thành phần và tỉ lệ các nguyên tố trong hợp chất: H₂O có 2H và 1O.' },
+          { id: 'cc2', title: 'Hóa trị', content: 'Khả năng liên kết của nguyên tử nguyên tố này với nguyên tử nguyên tố khác. Hóa trị của H là I, O là II.' },
+          { id: 'cc3', title: 'Quy tắc hóa trị', content: 'Tích (chỉ số × hóa trị) = bên A = bên B = tích (chỉ số × hóa trị) bên kia.' }
+        ],
+        labRequirements: [
+          { id: 'lr1', title: 'Lập công thức', description: 'Lập CTHH của hợp chất giữa Na (I) và Cl (I), Mg (II) và O (II)' },
+          { id: 'lr2', title: 'Bảng hóa trị', description: 'Ghi nhớ hóa trị các nguyên tố thường gặp' }
+        ]
       },
     ]
   },

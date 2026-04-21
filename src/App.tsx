@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { BookOpen, Beaker, BrainCircuit, Atom, ChevronRight, LayoutGrid, Sun, Moon, Trophy, GraduationCap, AlertCircle, Sparkles } from 'lucide-react';
+import { BookOpen, Beaker, BrainCircuit, Atom, ChevronRight, LayoutGrid, Sun, Moon, Trophy, GraduationCap, AlertCircle, Sparkles, X } from 'lucide-react';
 import { CURRICULUM } from './data/curriculum';
 import { AIChatbox } from './components/AIChatbox';
 import { PeriodicTable } from './components/PeriodicTable';
@@ -18,6 +18,8 @@ export default function App() {
   const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
   const [isDark, setIsDark] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedConcept, setSelectedConcept] = useState<{id: string; title: string; content: string} | null>(null);
+  const [selectedLab, setSelectedLab] = useState<{id: string; title: string; description: string} | null>(null);
 
   // Simulate loading for smooth transitions
   const handleTabChange = (tab: typeof activeTab) => {
@@ -249,10 +251,22 @@ export default function App() {
                           </div>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                            <div className="p-6 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/5 border border-emerald-500/30 group hover:border-emerald-500/50 transition-colors">
+                            <div 
+                              onClick={() => selectedLesson.coreConcepts?.[0] && setSelectedConcept(selectedLesson.coreConcepts[0])}
+                              className="p-6 rounded-2xl bg-emerald-500/10 dark:bg-emerald-500/5 border border-emerald-500/30 group hover:border-emerald-500/50 transition-colors cursor-pointer"
+                            >
                               <div className="mono-label mb-4 text-emerald-500">Core Concepts</div>
                               <ul className="space-y-3">
-                                {['Công thức hóa học', 'Hóa trị nguyên tố'].map(tag => (
+                                {selectedLesson.coreConcepts?.map((item) => (
+                                  <li 
+                                    key={item.id} 
+                                    onClick={(e) => { e.stopPropagation(); setSelectedConcept(item); }}
+                                    className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200 font-medium hover:text-emerald-500 cursor-pointer"
+                                  >
+                                    <div className="w-1 h-1 bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,1)]" />
+                                    {item.title}
+                                  </li>
+                                )) || ['Chưa có dữ liệu'].map(tag => (
                                   <li key={tag} className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200 font-medium">
                                     <div className="w-1 h-1 bg-emerald-500 shadow-[0_0_5px_rgba(16,185,129,1)]" />
                                     {tag}
@@ -260,10 +274,22 @@ export default function App() {
                                 ))}
                               </ul>
                             </div>
-                            <div className="p-6 rounded-2xl bg-blue-500/10 dark:bg-blue-500/5 border border-blue-500/30 group hover:border-blue-500/50 transition-colors">
+                            <div 
+                              onClick={() => selectedLesson.labRequirements?.[0] && setSelectedLab(selectedLesson.labRequirements[0])}
+                              className="p-6 rounded-2xl bg-blue-500/10 dark:bg-blue-500/5 border border-blue-500/30 group hover:border-blue-500/50 transition-colors cursor-pointer"
+                            >
                               <div className="mono-label mb-4 text-blue-500">Lab Requirements</div>
                               <ul className="space-y-3">
-                                {['Cân bằng phản ứng', 'Tính theo mol'].map(tag => (
+                                {selectedLesson.labRequirements?.map((item) => (
+                                  <li 
+                                    key={item.id} 
+                                    onClick={(e) => { e.stopPropagation(); setSelectedLab(item); }}
+                                    className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200 font-medium hover:text-blue-500 cursor-pointer"
+                                  >
+                                    <div className="w-1 h-1 bg-blue-500 shadow-[0_0_5px_rgba(59,130,246,1)]" />
+                                    {item.title}
+                                  </li>
+                                )) || ['Chưa có dữ liệu'].map(tag => (
                                   <li key={tag} className="flex items-center gap-3 text-sm text-slate-700 dark:text-slate-200 font-medium">
                                     <div className="w-1 h-1 bg-blue-500 shadow-[0_0_5px_rgba(59,130,246,1)]" />
                                     {tag}
@@ -272,6 +298,51 @@ export default function App() {
                               </ul>
                             </div>
                           </div>
+
+                          {/* Detail Modals */}
+                          {selectedConcept && (
+                            <div 
+                              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+                              onClick={() => setSelectedConcept(null)}
+                            >
+                              <motion.div 
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="glass-panel rounded-3xl p-8 max-w-lg w-full border-2 border-emerald-500/50"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <div className="flex items-center justify-between mb-4">
+                                  <h3 className="text-xl font-bold text-emerald-500">{selectedConcept.title}</h3>
+                                  <button onClick={() => setSelectedConcept(null)} className="p-2 hover:bg-emerald-500/20 rounded-lg transition-colors">
+                                    <X size={20} className="text-emerald-500" />
+                                  </button>
+                                </div>
+                                <p className="text-slate-600 dark:text-slate-200 leading-relaxed">{selectedConcept.content}</p>
+                              </motion.div>
+                            </div>
+                          )}
+                          
+                          {selectedLab && (
+                            <div 
+                              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+                              onClick={() => setSelectedLab(null)}
+                            >
+                              <motion.div 
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="glass-panel rounded-3xl p-8 max-w-lg w-full border-2 border-blue-500/50"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <div className="flex items-center justify-between mb-4">
+                                  <h3 className="text-xl font-bold text-blue-500">{selectedLab.title}</h3>
+                                  <button onClick={() => setSelectedLab(null)} className="p-2 hover:bg-blue-500/20 rounded-lg transition-colors">
+                                    <X size={20} className="text-blue-500" />
+                                  </button>
+                                </div>
+                                <p className="text-slate-600 dark:text-slate-200 leading-relaxed">{selectedLab.description}</p>
+                              </motion.div>
+                            </div>
+                          )}
 
                           {selectedLesson.exercises && selectedLesson.exercises.length > 0 && (
                             <div className="p-8 rounded-3xl bg-emerald-500/5 border border-dashed border-emerald-500/30 flex flex-col md:flex-row items-center justify-between gap-6">

@@ -11,6 +11,8 @@ export interface Lesson {
   title: string;
   content: string;
   exercises?: Question[];
+  coreConcepts?: { id: string; title: string; content: string }[];
+  labRequirements?: { id: string; title: string; description: string }[];
 }
 
 export interface Chapter {
