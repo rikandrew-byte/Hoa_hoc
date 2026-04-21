@@ -5,9 +5,9 @@ services:
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     envVars:
-      - key: VITE_GOOGLE_API_KEY
+      - key: VITE_GROQ_API_KEY
         fromSecret:
-          name: google_api_key_secret
+          name: groq_api_key_secret
     routes:
       - type: rewrite
         source: /*
