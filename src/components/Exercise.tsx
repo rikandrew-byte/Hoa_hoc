@@ -210,7 +210,7 @@ export function Exercise({ questions, onComplete }: ExerciseProps) {
                      "font-medium transition-colors",
                      showCorrectStatus ? "text-emerald-600 dark:text-emerald-400" : 
                      showWrongStatus ? "text-red-600 dark:text-red-400" :
-                     isSelected ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-neutral-50"
+                     isSelected ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-neutral-200"
                    )}>{opt}</span>
                 </div>
                 
