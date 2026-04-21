@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { Groq } from 'groq-sdk';
 import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../lib/utils';
@@ -56,30 +55,38 @@ export function AIChatbox() {
     }
 
     try {
-      const client = new Groq({
-        apiKey: GROQ_API_KEY,
-        dangerouslyAllowBrowser: true
+      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${GROQ_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'mixtral-8x7b-32768',
+          messages: [...messages, userMessage].map(m => ({
+            role: m.role,
+            content: m.content
+          })),
+          temperature: 0.7,
+          max_tokens: 1024,
+          system: `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
+            Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
+            Sử dụng các ví dụ thực tế. 
+            Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
+            Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
+            Hãy trả lời bằng tiếng Việt.`,
+        })
       });
 
-      const response = await client.chat.completions.create({
-        model: 'mixtral-8x7b-32768',
-        messages: [...messages, userMessage].map(m => ({
-          role: m.role,
-          content: m.content
-        })),
-        system: `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
-          Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
-          Sử dụng các ví dụ thực tế. 
-          Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
-          Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
-          Hãy trả lời bằng tiếng Việt.`,
-        temperature: 0.7,
-        max_tokens: 1024
-      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error?.message || 'Groq API Error');
+      }
 
+      const data = await response.json();
       const assistantMessage: Message = { 
         role: 'assistant', 
-        content: response.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.' 
+        content: data.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.' 
       };
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
