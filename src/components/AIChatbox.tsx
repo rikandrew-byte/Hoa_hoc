@@ -55,6 +55,22 @@ export function AIChatbox() {
     }
 
     try {
+      const systemInstruction = `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
+Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
+Sử dụng các ví dụ thực tế. 
+Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
+Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
+Hãy trả lời bằng tiếng Việt.`;
+
+      const messagesWithSystem = [
+        { role: 'system', content: systemInstruction },
+        ...messages,
+        userMessage
+      ].map(m => ({
+        role: m.role,
+        content: m.content
+      }));
+
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -63,18 +79,9 @@ export function AIChatbox() {
         },
         body: JSON.stringify({
           model: 'mixtral-8x7b-32768',
-          messages: [...messages, userMessage].map(m => ({
-            role: m.role,
-            content: m.content
-          })),
+          messages: messagesWithSystem,
           temperature: 0.7,
           max_tokens: 1024,
-          system: `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
-            Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
-            Sử dụng các ví dụ thực tế. 
-            Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
-            Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
-            Hãy trả lời bằng tiếng Việt.`,
         })
       });
 
@@ -82,6 +89,7 @@ export function AIChatbox() {
         const error = await response.json();
         throw new Error(error.error?.message || 'Groq API Error');
       }
+
 
       const data = await response.json();
       const assistantMessage: Message = { 
