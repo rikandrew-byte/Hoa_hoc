@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from '@google/genai';
+import { Groq } from 'groq-sdk';
 import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../lib/utils';
 
 // Pre-calculate API key safely
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || "";
 
 // Debug: Log env status
 console.log('[AIChatbox] ENV checking:', {
-  VITE_GOOGLE_API_KEY: GOOGLE_API_KEY ? 'SET (len:' + GOOGLE_API_KEY.length + ')' : 'NOT_SET',
+  VITE_GROQ_API_KEY: GROQ_API_KEY ? 'SET (len:' + GROQ_API_KEY.length + ')' : 'NOT_SET',
   allEnv: Object.keys(import.meta.env).filter(k => k.startsWith('VITE_'))
 });
 
@@ -49,38 +49,42 @@ export function AIChatbox() {
     setInput('');
     setIsLoading(true);
 
-    if (!GOOGLE_API_KEY) {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GOOGLE_API_KEY.' }]);
+    if (!GROQ_API_KEY) {
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GROQ_API_KEY.' }]);
       setIsLoading(false);
       return;
     }
 
     try {
-      const ai = new GoogleGenAI({ apiKey: GOOGLE_API_KEY });
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: [...messages, userMessage].map(m => ({
-          role: m.role === 'assistant' ? 'assistant' : 'user',
-          parts: [{ text: m.content }]
+      const client = new Groq({
+        apiKey: GROQ_API_KEY,
+        dangerouslyAllowBrowser: true
+      });
+
+      const response = await client.chat.completions.create({
+        model: 'mixtral-8x7b-32768',
+        messages: [...messages, userMessage].map(m => ({
+          role: m.role,
+          content: m.content
         })),
-        config: {
-          systemInstruction: `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
+        system: `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
           Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
           Sử dụng các ví dụ thực tế. 
           Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
           Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
           Hãy trả lời bằng tiếng Việt.`,
-        }
+        temperature: 0.7,
+        max_tokens: 1024
       });
 
       const assistantMessage: Message = { 
         role: 'assistant', 
-        content: response.text || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.' 
+        content: response.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.' 
       };
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Gemini Error:', error);
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi kết nối AI. Có thể API key đã hết hạn hoặc bị giới hạn. Vui lòng tạo API key mới tại https://aistudio.google.com/app/apikey' }]);
+      console.error('Groq Error:', error);
+      setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi kết nối AI. Vui lòng kiểm tra API key tại https://console.groq.com/keys' }]);
     } finally {
       setIsLoading(false);
     }
@@ -127,7 +131,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">ID: GEMINI_2_5_FLASH</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">ID: MIXTRAL_8X7B</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
