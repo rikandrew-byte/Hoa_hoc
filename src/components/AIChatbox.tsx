@@ -1,14 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/genai";
 import { cn } from '../lib/utils';
 
 // Pre-calculate API key safely
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || "";
+const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || "";
 
 // Debug: Log env status
 console.log('[AIChatbox] ENV checking:', {
-  VITE_GROQ_API_KEY: GROQ_API_KEY ? 'SET (len:' + GROQ_API_KEY.length + ')' : 'NOT_SET',
+  VITE_GOOGLE_API_KEY: GOOGLE_API_KEY ? 'SET (len:' + GOOGLE_API_KEY.length + ')' : 'NOT_SET',
   allEnv: Object.keys(import.meta.env).filter(k => k.startsWith('VITE_'))
 });
 
@@ -48,59 +49,61 @@ export function AIChatbox() {
     setInput('');
     setIsLoading(true);
 
-    if (!GROQ_API_KEY) {
+    if (!GOOGLE_API_KEY) {
       setMessages(prev => [...prev, { role: 'assistant', content: 'Lỗi: Chưa cấu hình API Key. Vui lòng kiểm tra biến môi trường VITE_GROQ_API_KEY.' }]);
       setIsLoading(false);
       return;
     }
 
     try {
-      const systemInstruction = `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam.\nHãy giải thích các khái niệm một cách dễ hiểu, thân thiện.\nSử dụng các ví dụ thực tế.\nNếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.\nNếu hỏi về cân bằng phương trình, hãy giải thích từng bước.\nHãy trả lời bằng tiếng Việt.`;
-
-      // Đảm bảo không có property 'system' ngoài cùng
-      const messagesWithSystem = [
-        { role: 'system', content: systemInstruction },
-        ...messages,
-        userMessage
-      ].map(m => ({
-        role: m.role,
-        content: m.content
-      }));
-
-      const body = {
-        model: 'gemma-7b-it',
-        messages: messagesWithSystem,
-        temperature: 0.7,
-        max_tokens: 1024
-      };
-
-      // Debug: log body gửi đi
-      console.log('[AIChatbox] Groq API body:', body);
-
-      const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${GROQ_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body)
+      const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
+      const model = genAI.getGenerativeModel({ 
+        model: "gemini-pro",
+        safetySettings: [ // Add safety settings to reduce blocking
+            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_NONE },
+            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_NONE },
+        ]
       });
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.error?.message || 'Groq API Error');
+      const systemInstruction = `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam.\nHãy giải thích các khái niệm một cách dễ hiểu, thân thiện.\nSử dụng các ví dụ thực tế.\nNếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.\nNếu hỏi về cân bằng phương trình, hãy giải thích từng bước.\nHãy trả lời bằng tiếng Việt.`;
+
+      // Convert message history to Gemini format
+      const history = messages.map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      }));
+      
+      // Remove the initial welcome message from history to not confuse the model
+      if (history.length > 0 && history[0].role === 'model') {
+        history.shift();
       }
 
-      const data = await response.json();
+      const chat = model.startChat({
+        history: [
+          { role: 'user', parts: [{ text: systemInstruction }] },
+          { role: 'model', parts: [{ text: 'Đã hiểu. Tôi là giáo viên Hóa học lớp 8, sẵn sàng giải đáp các thắc mắc.' }] },
+          ...history
+        ],
+        generationConfig: {
+          maxOutputTokens: 1024,
+        },
+      });
+
+      const result = await chat.sendMessage(input);
+      const response = result.response;
+      const text = response.text();
+
       const assistantMessage: Message = {
         role: 'assistant',
-        content: data.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.'
+        content: text || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.'
       };
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
-      console.error('Groq Error:', error);
+      console.error('Gemini Error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Lỗi không xác định.';
-      const displayMessage = `**Lỗi kết nối AI:**\n\n\`\`\`\n${errorMessage}\n\`\`\`\n\nVui lòng kiểm tra lại API key của bạn trên **Render** và đảm bảo nó còn hiệu lực tại Groq Console.`;
+      const displayMessage = `**Lỗi kết nối AI (Gemini):**\n\n\`\`\`\n${errorMessage}\n\`\`\`\n\nVui lòng kiểm tra lại API key của bạn trên **Render** và đảm bảo nó được cấp quyền cho Gemini API.`;
       setMessages(prev => [...prev, { role: 'assistant', content: displayMessage }]);
     } finally {
       setIsLoading(false);
@@ -148,7 +151,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: GEMMA-7B</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: GEMINI-PRO</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">

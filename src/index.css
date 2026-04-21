@@ -39,21 +39,21 @@
   }
 
   .dark {
-    --bg-main: #0A0A0C;
-    --bg-secondary: #111113;
-    --text-main: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --panel-bg: #151619;
-    --panel-border: rgba(255, 255, 255, 0.06);
+    --bg-main: #0f172a; /* slate-900 */
+    --bg-secondary: #1e293b; /* slate-800 */
+    --text-main: #f8fafc; /* slate-50 */
+    --text-secondary: #94a3b8; /* slate-400 */
+    --text-muted: #64748b; /* slate-500 */
+    --panel-bg: #1e293b; /* slate-800 */
+    --panel-border: #334155; /* slate-700 */
     --accent: #22C55E;
     --accent-hover: #34d399;
     --accent-glow: rgba(34, 197, 94, 0.25);
     --accent-soft: rgba(34, 197, 94, 0.08);
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -2px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -4px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.8), 0 8px 10px -6px rgba(0, 0, 0, 0.7);
   }
 
   body {
@@ -194,14 +194,6 @@
 .dark .chapter-title-4 {
   color: #f687b3 !important; /* pink-300 */
   text-shadow: 0 2px 8px rgba(246,135,179,0.18);
-}
-
-/* Chữ trong khung Core Concepts và Lab Requirements */
-.dark .text-slate-700 {
-  color: #e2e8f0 !important; /* slate-200 - sáng hơn */
-}
-.dark .text-slate-200 {
-  color: #f1f5f9 !important; /* slate-100 - sáng nhất */
 }
 
 /* Enhanced Hover Effects */

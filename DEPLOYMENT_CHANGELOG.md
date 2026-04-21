@@ -92,3 +92,16 @@
 - **Vấn đề**: Model `llama3-8b-8192` tiếp tục bị Groq ngừng hỗ trợ, gây ra lỗi API.
 - **Giải pháp**: Chuyển sang model `gemma-7b-it`, một model ổn định và được hỗ trợ rộng rãi.
 - **Giao diện**: Cập nhật tên model hiển thị trên giao diện chatbox thành `GEMMA-7B`.
+
+---
+
+## Ngày 26/04/2026 (Gemini Code Assist)
+
+### 1. Chuyển đổi AI trở lại Google Gemini
+- **Lý do**: Theo yêu cầu, quay lại sử dụng API key cá nhân của người dùng.
+- **Thực thi**: Cập nhật `AIChatbox.tsx` để sử dụng SDK `@google/genai` và model `gemini-pro`.
+- **Cấu hình**: Ứng dụng giờ sẽ đọc key từ biến môi trường `VITE_GOOGLE_API_KEY`.
+
+### 2. Cải thiện giao diện Dark Mode
+- **Vấn đề**: Các màu nền và màu chữ trong chế độ tối quá gần nhau, gây khó đọc.
+- **Giải pháp**: Tinh chỉnh lại bảng màu trong `src/index.css` để tăng độ tương phản. Loại bỏ các quy tắc CSS `!important` không cần thiết.
