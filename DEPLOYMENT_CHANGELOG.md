@@ -83,3 +83,12 @@
 - **Vấn đề**: Model `llama3-70b-8192` đã bị Groq ngừng hỗ trợ, gây ra lỗi 400 khi gọi API.
 - **Giải pháp**: Cập nhật model AI trong `src/components/AIChatbox.tsx` sang model `llama3-8b-8192` đang hoạt động.
 - **Giao diện**: Cập nhật tên model hiển thị trên giao diện chatbox cho phù hợp.
+
+---
+
+## Ngày 25/04/2026 (Gemini Code Assist)
+
+### 1. Sửa lỗi (Bug Fix) - AI Model Decommissioned (Lần 2)
+- **Vấn đề**: Model `llama3-8b-8192` tiếp tục bị Groq ngừng hỗ trợ, gây ra lỗi API.
+- **Giải pháp**: Chuyển sang model `gemma-7b-it`, một model ổn định và được hỗ trợ rộng rãi.
+- **Giao diện**: Cập nhật tên model hiển thị trên giao diện chatbox thành `GEMMA-7B`.

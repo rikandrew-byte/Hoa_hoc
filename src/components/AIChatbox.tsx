@@ -68,7 +68,7 @@ export function AIChatbox() {
       }));
 
       const body = {
-        model: 'llama3-8b-8192',
+        model: 'gemma-7b-it',
         messages: messagesWithSystem,
         temperature: 0.7,
         max_tokens: 1024
@@ -148,7 +148,7 @@ export function AIChatbox() {
             </div>
           </div>
         </div>
-        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: LLAMA3-8B</div>
+        <div className="mono-label text-slate-400 dark:text-slate-600">MODEL: GEMMA-7B</div>
       </div>
 
       <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-hide">
