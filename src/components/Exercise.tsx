@@ -202,7 +202,7 @@ export function Exercise({ questions, onComplete }: ExerciseProps) {
                      "w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm transition-colors",
                      isSelected 
                       ? "bg-emerald-500 text-[#0A0A0C]" 
-                      : "bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-neutral-50"
+                      : "bg-slate-100 dark:bg-white/10 text-slate-500 dark:text-neutral-200"
                    )}>
                       {String.fromCharCode(65 + i)}
                    </div>
@@ -277,7 +277,7 @@ export function Exercise({ questions, onComplete }: ExerciseProps) {
                     <CheckCircle2 size={16} className="text-emerald-500" />
                     <span className="mono-label !opacity-100 text-emerald-500">Phân tích chuyên sâu:</span>
                  </div>
-                 <p className="text-sm text-slate-600 dark:text-neutral-50 leading-relaxed font-sans italic">
+                 <p className="text-sm text-slate-600 dark:text-neutral-200 leading-relaxed font-sans italic">
                     {currentQuestion.explanation}
                  </p>
               </div>
