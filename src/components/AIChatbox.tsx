@@ -4,7 +4,7 @@ import { Send, Bot, User, Loader2, AlertCircle, X, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { cn } from '../lib/utils';
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GOOGLE_API_KEY || import.meta.env.GOOGLE_API_KEY });
 
 interface Message {
   role: 'user' | 'assistant';
