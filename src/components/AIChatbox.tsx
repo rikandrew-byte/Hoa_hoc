@@ -55,13 +55,9 @@ export function AIChatbox() {
     }
 
     try {
-      const systemInstruction = `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam. 
-Hãy giải thích các khái niệm một cách dễ hiểu, thân thiện. 
-Sử dụng các ví dụ thực tế. 
-Nếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.
-Nếu hỏi về cân bằng phương trình, hãy giải thích từng bước.
-Hãy trả lời bằng tiếng Việt.`;
+      const systemInstruction = `Bạn là một giáo viên Hóa học lớp 8 tại Việt Nam.\nHãy giải thích các khái niệm một cách dễ hiểu, thân thiện.\nSử dụng các ví dụ thực tế.\nNếu học sinh hỏi về các công thức, hãy trình bày rõ ràng.\nNếu hỏi về cân bằng phương trình, hãy giải thích từng bước.\nHãy trả lời bằng tiếng Việt.`;
 
+      // Đảm bảo không có property 'system' ngoài cùng
       const messagesWithSystem = [
         { role: 'system', content: systemInstruction },
         ...messages,
@@ -71,18 +67,23 @@ Hãy trả lời bằng tiếng Việt.`;
         content: m.content
       }));
 
+      const body = {
+        model: 'mixtral-8x7b-32768',
+        messages: messagesWithSystem,
+        temperature: 0.7,
+        max_tokens: 1024
+      };
+
+      // Debug: log body gửi đi
+      console.log('[AIChatbox] Groq API body:', body);
+
       const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${GROQ_API_KEY}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          model: 'mixtral-8x7b-32768',
-          messages: messagesWithSystem,
-          temperature: 0.7,
-          max_tokens: 1024,
-        })
+        body: JSON.stringify(body)
       });
 
       if (!response.ok) {
@@ -90,11 +91,10 @@ Hãy trả lời bằng tiếng Việt.`;
         throw new Error(error.error?.message || 'Groq API Error');
       }
 
-
       const data = await response.json();
-      const assistantMessage: Message = { 
-        role: 'assistant', 
-        content: data.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.' 
+      const assistantMessage: Message = {
+        role: 'assistant',
+        content: data.choices[0]?.message?.content || 'Xin lỗi, mình không thể trả lời câu hỏi này lúc này.'
       };
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
