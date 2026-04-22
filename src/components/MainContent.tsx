@@ -32,7 +32,7 @@ export function MainContent({
   return (
     <div className={cn(
       "flex-1 overflow-y-auto pr-1 md:pr-2 scrollbar-hide h-full",
-      activeTab === 'content' && !selectedLesson && "hidden lg:block"
+      activeTab === 'content' && !selectedLesson // Removed "hidden lg:block"
     )}>
       <motion.div
         key={activeTab + (selectedLesson?.id || '')}
@@ -184,19 +184,28 @@ export function MainContent({
                 </div>
               </>
             ) : (
-              <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 py-20">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-emerald-500 blur-3xl opacity-10 animate-pulse" />
+              <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6 py-12 md:py-20 animate-in fade-in zoom-in duration-500">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-emerald-500 blur-3xl opacity-10 group-hover:opacity-20 transition-opacity animate-pulse" />
                   <button 
                     onClick={onOpenSidebar}
-                    className="w-24 h-24 rounded-full border border-emerald-500/20 flex items-center justify-center relative bg-[var(--bg-main)] hover:border-emerald-500/50 transition-colors"
+                    className="w-24 h-24 md:w-32 md:h-32 rounded-full border border-emerald-500/20 flex items-center justify-center relative bg-[var(--bg-main)] hover:border-emerald-500/50 hover:scale-105 transition-all duration-300 shadow-xl shadow-emerald-500/5"
                   >
-                    <BookOpen size={48} className="text-emerald-500/20" />
+                    <BookOpen size={48} className="text-emerald-500/30 md:size-64" />
+                    <div className="absolute inset-0 rounded-full border-2 border-dashed border-emerald-500/10 animate-[spin_10s_linear_infinite]" />
                   </button>
                 </div>
                 <div className="max-w-xs space-y-3">
-                  <h3 className="highlight-text font-bold tracking-wider uppercase text-sm">Laboratory Initializing...</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-mono">Select a module from the command panel to synchronize course data.</p>
+                  <h3 className="highlight-text font-bold tracking-wider uppercase text-base md:text-lg">Sẵn sàng học tập</h3>
+                  <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 leading-relaxed font-mono px-4">
+                    Nhấn vào biểu tượng hoặc sử dụng bảng điều khiển để chọn bài học lý thuyết.
+                  </p>
+                  <button 
+                    onClick={onOpenSidebar}
+                    className="mt-4 px-6 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 text-[10px] font-bold uppercase tracking-widest hover:bg-emerald-500 hover:text-white transition-all active:scale-95"
+                  >
+                    MỞ DANH MỤC
+                  </button>
                 </div>
               </div>
             )}
